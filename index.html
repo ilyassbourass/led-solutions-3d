@@ -517,7 +517,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: ew-resize;
+      pointer-events: none;
       z-index: 20;
     }
 
@@ -534,6 +534,20 @@
       color: #FFFFFF;
       font-size: 18px;
       font-weight: 800;
+    }
+
+    .ba-range-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: ew-resize;
+      z-index: 30;
+      margin: 0;
+      -webkit-appearance: none;
+      touch-action: pan-y;
     }
 
     .ba-metrics-comparison {
@@ -1341,6 +1355,7 @@
           <div class="ba-slider-handle" id="baHandle">
             <div class="handle-circle">↔</div>
           </div>
+          <input type="range" min="1" max="99" value="50" class="ba-range-slider" id="baRangeInput" aria-label="Compare Before and After Commercial Lighting">
         </div>
 
         <!-- Comparison Metric Cards -->
@@ -1750,7 +1765,7 @@
     const beforeLayer = document.getElementById('baBeforeLayer');
     const imgBefore = document.getElementById('imgBefore');
     const handle = document.getElementById('baHandle');
-    let isDragging = false;
+    const rangeInput = document.getElementById('baRangeInput');
 
     function syncImgWidth() {
       if (container && imgBefore) {
@@ -1761,44 +1776,13 @@
     window.addEventListener('load', syncImgWidth);
     setTimeout(syncImgWidth, 100);
 
-    function setSliderPosition(x) {
-      const rect = container.getBoundingClientRect();
-      let pos = (x - rect.left) / rect.width;
-      if (pos < 0.05) pos = 0.05;
-      if (pos > 0.95) pos = 0.95;
-      const pct = (pos * 100) + '%';
-      beforeLayer.style.width = pct;
-      handle.style.left = pct;
+    if (rangeInput) {
+      rangeInput.addEventListener('input', (e) => {
+        const val = e.target.value + '%';
+        beforeLayer.style.width = val;
+        handle.style.left = val;
+      });
     }
-
-    container.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      setSliderPosition(e.clientX);
-    });
-
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      setSliderPosition(e.clientX);
-    });
-
-    // Touch Support
-    container.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      setSliderPosition(e.touches[0].clientX);
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      isDragging = false;
-    });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      setSliderPosition(e.touches[0].clientX);
-    }, { passive: true });
 
     // 2. Interactive Calculator Logic
     let calcDailyHours = 24;
