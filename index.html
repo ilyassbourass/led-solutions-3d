@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LED Solutions Canberra — 3D Commercial Photometric Lighting Simulator & ROI Calculator</title>
+  <meta name="description" content="Simulate commercial warehouse & industrial lighting retrofits in 3D. Compare 400W Metal Halide vs 5000K Commercial LED, view AS/NZS 1680 Lux heatmaps, and calculate Evoenergy ACT tariff energy payback.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN for rapid styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              900: '#064e3b',
+              950: '#022c22'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Analytics 4 (Kieran's Property) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3FE677XDS1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3FE677XDS1');
+  </script>
+
+  <style>
+    body {
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    .hud-glass {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+    .neon-glow-emerald {
+      box-shadow: 0 0 25px -3px rgba(16, 185, 129, 0.35);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-[#070a10]">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-lg shadow-sm">
+          💡
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold text-base tracking-tight text-white">LED SOLUTIONS</span>
+            <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-emerald-950 text-emerald-400 border border-emerald-500/30">CANBERRA</span>
+          </div>
+          <p class="text-[11px] text-slate-400 font-medium">ACT Licence #2009974 • 14 Years in Canberra • 57,000+ Installations</p>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-6">
+        <div class="text-right">
+          <p class="text-xs text-slate-400">Speak Directly with Kieran</p>
+          <a href="tel:1300763122" class="text-sm font-bold font-mono text-emerald-400 hover:text-emerald-300 transition-colors">1300 763 122</a>
+          <span class="text-xs text-slate-500 mx-1">|</span>
+          <a href="tel:0415343050" class="text-xs font-mono text-slate-300 hover:text-white">0415 343 050</a>
+        </div>
+        <button class="open-audit-modal px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/20 transition-all hover:scale-105 active:scale-95">
+          Book $0 On-Site Audit
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with 3D WebGL Canvas -->
+  <main class="flex-1 flex flex-col">
+    <div class="relative w-full h-[620px] lg:h-[720px] bg-slate-950 overflow-hidden border-b border-slate-800">
+      
+      <!-- 3D Three.js Canvas Container -->
+      <div id="webgl-container" class="absolute inset-0 cursor-grab active:cursor-grabbing"></div>
+
+      <!-- Overlaid HUD Controls: Top Left Mode Switcher -->
+      <div class="absolute top-4 left-4 z-20 flex flex-col space-y-2">
+        <div class="hud-glass p-1.5 rounded-xl flex items-center space-x-1">
+          <button data-mode="led" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-950 transition-all active-mode shadow-sm">
+            ✨ Smart LED 5000K
+          </button>
+          <button data-mode="halide" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/80 text-slate-300 hover:text-white transition-all">
+            ⚡ 400W Metal Halide
+          </button>
+          <button data-mode="heatmap" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-900/80 text-slate-300 hover:text-white transition-all">
+            📊 AS/NZS 1680 Lux CAD
+          </button>
+        </div>
+
+        <!-- Camera Angles Floating Bar -->
+        <div class="hud-glass px-2.5 py-1.5 rounded-xl flex items-center space-x-2 text-xs text-slate-400">
+          <span class="text-[10px] uppercase font-mono tracking-wider text-slate-400 font-semibold">Camera:</span>
+          <button data-cam="overview" class="px-2 py-0.5 rounded border border-emerald-400 text-emerald-400 hover:text-white transition-colors">Orbit</button>
+          <button data-cam="forklift" class="px-2 py-0.5 rounded border border-transparent hover:border-slate-700 text-slate-300 transition-colors">Forklift POV</button>
+          <button data-cam="cad" class="px-2 py-0.5 rounded border border-transparent hover:border-slate-700 text-slate-300 transition-colors">Top-Down CAD</button>
+          <button data-cam="rack" class="px-2 py-0.5 rounded border border-transparent hover:border-slate-700 text-slate-300 transition-colors">Racks</button>
+        </div>
+      </div>
+
+      <!-- Overlaid HUD Status Box: Bottom Left -->
+      <div class="absolute bottom-4 left-4 z-20 max-w-sm">
+        <div class="hud-glass p-4 rounded-2xl">
+          <div class="flex items-center justify-between mb-2">
+            <span id="hud-mode-status" class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/40">
+              ENERGY SAVINGS ACTIVE: -75%
+            </span>
+            <span class="text-[11px] font-mono text-slate-400">60 FPS WebGL</span>
+          </div>
+          <h3 id="hud-mode-title" class="text-base font-bold text-white mb-1">Commercial Smart LED (5000K)</h3>
+          <p id="hud-mode-watts" class="text-xs text-slate-300 mb-0.5">140W / fitting (Effective 91W with motion sensors)</p>
+          <p id="hud-mode-cri" class="text-xs text-slate-400 font-mono">CRI 85+ • Instant-On • Zero Stroboscopic Effect</p>
+
+          <!-- Interactive Dimmer Slider -->
+          <div class="mt-3 pt-3 border-t border-slate-700/60 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-medium">Lumen Dimming:</span>
+            <input id="dimmer-slider" type="range" min="0.1" max="1.0" step="0.05" value="1.0" class="w-28 accent-emerald-500 cursor-pointer">
+            <span id="dimmer-val" class="text-xs font-mono text-emerald-400 w-8 text-right font-bold">100%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlaid Interactive Calculator Floating HUD: Top Right -->
+      <div class="absolute top-4 right-4 z-20 w-80 sm:w-96 hidden md:block">
+        <div class="hud-glass p-5 rounded-2xl border border-emerald-500/20 neon-glow-emerald">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider font-mono font-bold text-emerald-400">Evoenergy ACT Commercial Rate</span>
+              <h4 class="text-sm font-bold text-white">Live Facility Payback Engine</h4>
+            </div>
+            <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-slate-800 text-slate-300">$0.32/kWh</span>
+          </div>
+
+          <!-- Dynamic Controls -->
+          <div class="space-y-3 mb-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-300">Commercial High-Bay Fixtures</span>
+                <span id="val-fixtures" class="font-mono font-bold text-emerald-400">36</span>
+              </div>
+              <input id="slider-fixtures" type="range" min="12" max="120" step="4" value="36" class="w-full accent-emerald-500 cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-300">Daily Operating Hours</span>
+                <span id="val-hours" class="font-mono font-bold text-emerald-400">14 hrs</span>
+              </div>
+              <input id="slider-hours" type="range" min="8" max="24" step="1" value="14" class="w-full accent-emerald-500 cursor-pointer">
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <span class="text-xs text-slate-300">Smart Microwave Occupancy Dimming</span>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input id="toggle-sensors" type="checkbox" checked class="sr-only peer">
+                <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Live ROI Calculated KPIs -->
+          <div class="grid grid-cols-2 gap-2 pt-3 border-t border-slate-800/80">
+            <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-mono">Annual Cash Saved</span>
+              <p id="stat-savings" class="text-lg font-black text-emerald-400 font-mono tracking-tight">$15,900 AUD</p>
+            </div>
+            <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-mono">Full Payback Period</span>
+              <p id="stat-payback" class="text-lg font-black text-cyan-400 font-mono tracking-tight">7.2 Mo</p>
+            </div>
+            <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-mono">10-Year Cumulative Profit</span>
+              <p id="stat-ten-year" class="text-sm font-bold text-white font-mono tracking-tight">+$159,000 AUD</p>
+            </div>
+            <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
+              <span class="text-[10px] text-slate-400 uppercase font-mono">CO₂ Abated / Year</span>
+              <p id="stat-co2" class="text-sm font-bold text-slate-300 font-mono tracking-tight">34.2 T</p>
+            </div>
+          </div>
+
+          <div class="mt-3 flex items-center justify-between text-xs">
+            <span class="text-slate-400">Total Load Reduction:</span>
+            <span id="stat-power-diff" class="font-mono text-emerald-400 font-bold">16.4 kW ➔ 3.3 kW (-75%)</span>
+          </div>
+
+          <div id="stat-audit-status" class="mt-2 text-center"></div>
+
+          <button class="open-audit-modal mt-3 w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 transition-all">
+            Lock In This Saving — Get Canberra Quote
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mobile Calculator Drawer (Visible only on smaller screens) -->
+    <div class="block md:hidden p-4 bg-slate-900 border-b border-slate-800">
+      <div class="flex items-center justify-between mb-3">
+        <h4 class="text-sm font-bold text-white">Canberra Facility Payback Summary</h4>
+        <span class="text-xs font-mono text-emerald-400 font-bold">Evoenergy $0.32/kWh</span>
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-center">
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+          <span class="text-[10px] text-slate-400 block font-mono">SAVINGS / YEAR</span>
+          <span class="text-emerald-400 font-bold text-base font-mono">$15,900 AUD</span>
+        </div>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800">
+          <span class="text-[10px] text-slate-400 block font-mono">PAYBACK</span>
+          <span class="text-cyan-400 font-bold text-base font-mono">7.2 Months</span>
+        </div>
+      </div>
+      <button class="open-audit-modal mt-3 w-full py-2.5 rounded-lg bg-emerald-500 text-slate-950 font-bold text-xs">
+        Book $0 Canberra Photometric Audit
+      </button>
+    </div>
+
+    <!-- Canberra Case Studies & Proof Section -->
+    <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/30">
+          PROVEN CANBERRA TRACK RECORD
+        </span>
+        <h2 class="mt-3 text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
+          Real ACT Facilities. Real Verified Reductions.
+        </h2>
+        <p class="mt-2 text-sm text-slate-400">
+          LED Solutions Canberra has audited, engineered, and completed turnkey commercial LED installations across Fyshwick, Mitchell, Hume, Belconnen, and the Parliamentary Triangle.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Case Study 1: IRT Kangara Waters Belconnen -->
+        <div class="bg-slate-900/50 rounded-2xl p-6 border border-slate-800/80 hover:border-emerald-500/40 transition-colors">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+              BELCONNEN, ACT
+            </span>
+            <span class="text-xs text-slate-400">5 Buildings</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">IRT Kangara Waters Retirement Living</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Overhauled 74 luminaires per building across 5 multi-storey residential and community facilities. Installed smart microwave occupancy sensors that automatically power down during quiet hours.
+          </p>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+            <div>
+              <span class="text-slate-400 block text-[10px]">TOTAL POWER CUT</span>
+              <span class="text-emerald-400 font-bold text-sm">-68% Reduction</span>
+            </div>
+            <div class="text-right">
+              <span class="text-slate-400 block text-[10px]">AUTO SHUT-OFF</span>
+              <span class="text-white font-bold text-sm">43% of Night</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 2: Fyshwick Logistics Hub -->
+        <div class="bg-slate-900/50 rounded-2xl p-6 border border-slate-800/80 hover:border-emerald-500/40 transition-colors">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-500/30">
+              FYSHWICK, ACT
+            </span>
+            <span class="text-xs text-slate-400">High-Bay Distribution</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Fyshwick High-Bay Logistics Depot</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Replaced 48 failing 400W metal halide fixtures with 150W precision-optic LED high bays. Solved recurring ballast burnouts and lifted floor-level illuminance from 65 Lux to AS/NZS 1680 compliant 220 Lux.
+          </p>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+            <div>
+              <span class="text-slate-400 block text-[10px]">ANNUAL SAVINGS</span>
+              <span class="text-cyan-400 font-bold text-sm">$31,400 AUD/yr</span>
+            </div>
+            <div class="text-right">
+              <span class="text-slate-400 block text-[10px]">PAYBACK TIME</span>
+              <span class="text-white font-bold text-sm">6.1 Months</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 3: Braddon Strata Carpark -->
+        <div class="bg-slate-900/50 rounded-2xl p-6 border border-slate-800/80 hover:border-emerald-500/40 transition-colors">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono font-bold text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/30">
+              BRADDON, ACT
+            </span>
+            <span class="text-xs text-slate-400">42-Unit Residential</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Braddon Underground Strata Carpark</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Upgraded continuous 24/7 twin T8 fluorescent batten lighting to integrated IP65 LED tri-proof battens with AS2293 certified emergency battery backups.
+          </p>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+            <div>
+              <span class="text-slate-400 block text-[10px]">ELECTRICITY DROP</span>
+              <span class="text-amber-400 font-bold text-sm">-74% Constant</span>
+            </div>
+            <div class="text-right">
+              <span class="text-slate-400 block text-[10px]">COMPLIANCE</span>
+              <span class="text-white font-bold text-sm">AS2293 Signed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Kieran & LED Solutions Canberra -->
+    <section class="bg-slate-900/30 border-y border-slate-800/80 py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-2 max-w-xl">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase">100% CANBERRA OWNED & OPERATED</span>
+          <h3 class="text-2xl font-bold text-white">Why Facility Managers Call Kieran Directly</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            We don't send commission sales reps who disappear after the contract. Kieran personally scopes your building, models the photometric lux distribution to Australian Standard AS/NZS 1680, and oversees our licensed electricians from scissor-lift setup to final ACT inspection sign-off.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-4 items-center">
+          <div class="bg-slate-900 px-4 py-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-xl font-black text-emerald-400 font-mono">14+</span>
+            <span class="text-[11px] text-slate-400 block">Years in ACT</span>
+          </div>
+          <div class="bg-slate-900 px-4 py-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-xl font-black text-emerald-400 font-mono">57,000+</span>
+            <span class="text-[11px] text-slate-400 block">Lights Installed</span>
+          </div>
+          <div class="bg-slate-900 px-4 py-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-xl font-black text-emerald-400 font-mono">5.0 ★</span>
+            <span class="text-[11px] text-slate-400 block">Google Rating</span>
+          </div>
+          <button class="open-audit-modal px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 transition-transform hover:scale-105">
+            Request Kieran's On-Site Audit
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- High-Converting Lead Capture Modal -->
+  <div id="audit-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+      
+      <!-- Close Button -->
+      <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+        &times;
+      </button>
+
+      <!-- Form State -->
+      <form id="audit-form" class="space-y-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">CANBERRA COMMERCIAL AUDIT</span>
+          <h3 class="text-xl font-bold text-white mt-1">Book Your $0 On-Site Photometric Assessment</h3>
+          <p class="text-xs text-slate-400 mt-1">
+            Kieran will evaluate your facility's light levels against AS/NZS 1680 standards and model your Evoenergy rebate savings.
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Company / Facility Name</label>
+          <input id="form-biz-name" required type="text" placeholder="e.g. Fyshwick Cold Storage / Mitchell Auto" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Contact Name</label>
+            <input id="form-name" required type="text" placeholder="Your name" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Phone Number</label>
+            <input id="form-phone" required type="tel" placeholder="04xx xxx xxx" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Facility Suburb (ACT/NSW)</label>
+            <select id="form-suburb" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+              <option value="Fyshwick">Fyshwick</option>
+              <option value="Mitchell">Mitchell</option>
+              <option value="Hume">Hume</option>
+              <option value="Belconnen">Belconnen</option>
+              <option value="Canberra CBD">Canberra CBD</option>
+              <option value="Queanbeyan">Queanbeyan</option>
+              <option value="Gungahlin">Gungahlin</option>
+              <option value="Tuggeranong">Tuggeranong</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Facility Type</label>
+            <select id="form-type" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+              <option value="Warehouse / Logistics">Warehouse / Logistics</option>
+              <option value="Strata Undercover Carpark">Strata Carpark (24/7)</option>
+              <option value="Manufacturing Workshop">Workshop / Industrial</option>
+              <option value="Commercial Office Building">Commercial Office</option>
+              <option value="Retail Showroom">Retail Showroom</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 transition-all">
+            Schedule $0 Audit & Receive 3D Lux Report
+          </button>
+          <p class="text-[10px] text-center text-slate-500 mt-2">
+            No obligation. Kieran will call to verify site access and fixture count.
+          </p>
+        </div>
+      </form>
+
+      <!-- Success State -->
+      <div id="modal-success" class="hidden text-center py-6 space-y-4">
+        <div class="w-14 h-14 bg-emerald-500/10 border border-emerald-500/40 rounded-full flex items-center justify-center text-emerald-400 text-2xl mx-auto">
+          ✓
+        </div>
+        <h3 class="text-xl font-bold text-white">Assessment Request Received!</h3>
+        <p class="text-xs text-slate-300 max-w-sm mx-auto">
+          Kieran from LED Solutions Canberra will review your facility specifications and call you within 1 business day.
+        </p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 inline-block font-mono text-xs text-emerald-400">
+          Booking Ref: <span id="ref-code" class="font-bold">ACT-LED-492810</span>
+        </div>
+        <div>
+          <button onclick="document.getElementById('audit-modal').classList.add('hidden')" class="px-6 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white">
+            Return to 3D Simulator
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-8 px-4 text-center text-xs text-slate-500">
+    <p>© 2026 LED Solutions Canberra Pty Ltd. All rights reserved. ABN 51 163 611 452 • ACT Electrical Contractor Licence #2009974</p>
+    <p class="mt-1">Photometric simulation compliant with AS/NZS 1680.2.4 & AS2293 emergency lighting regulations.</p>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
