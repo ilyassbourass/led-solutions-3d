@@ -1,15 +1,15 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Commercial Lighting Savings & Controls | LED Solutions Canberra</title>
-  <meta name="description" content="Free commercial and strata lighting savings estimate for Canberra properties. 14 years in the ACT, 57,000+ lights installed, 5.0 Google rating.">
+  <title>Commercial &amp; Strata Lighting Savings | LED Solutions Canberra</title>
+  <meta name="description" content="Free commercial and strata lighting savings estimate for Canberra properties. 14+ years in Canberra, 57,000+ lights installed, 5.0 Google rating. Call 1300 763 122.">
 
-  <!-- Inter Google Font -->
+  <!-- Official Google Fonts matching ledsolutions.com.au -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 
   <!-- Google Analytics 4 (Kieran's Property) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3FE677XDS1"></script>
@@ -21,1183 +21,843 @@
   </script>
 
   <style>
-    :root {
-      --ink: #1c1b19;
-      --muted: #706c64;
-      --paper: #f7f4ee;
-      --white: #ffffff;
-      --line: #ddd7cd;
-      --accent: #d36d3d;
-      --accent-dark: #a84f29;
-      --soft: #eee8de;
-      --dark: #24221f;
-      --success: #345846;
-      --shadow: 0 18px 55px rgba(34, 30, 25, 0.08);
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      line-height: 1.55;
+      margin: 0;
+      background: #FAF8F3;
+      color: #1A1712;
+      font-family: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    a { color: inherit; }
-    .wrap { width: min(var(--max), calc(100% - 44px)); margin: auto; }
-
-    /* Typography */
-    .eyebrow {
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: var(--accent-dark);
-      display: inline-block;
-      margin-bottom: 8px;
-    }
-    h1 {
-      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      margin: 12px 0 20px;
-      font-weight: 900;
-      color: var(--ink);
-    }
-    h2 {
-      font-size: clamp(1.9rem, 3.6vw, 3.2rem);
-      line-height: 1.08;
-      letter-spacing: -0.035em;
-      margin: 10px 0 16px;
-      font-weight: 850;
-    }
-    .lead {
-      font-size: clamp(1.08rem, 1.8vw, 1.28rem);
-      color: #4a4741;
-      max-width: 680px;
-      margin: 0 0 24px;
-      line-height: 1.6;
+    h1, h2, h3, h4 {
+      font-family: "Hanken Grotesk", Inter, ui-sans-serif, sans-serif;
+      letter-spacing: -0.028em;
+      color: #1A1712;
     }
 
-    /* Buttons */
-    .btn {
+    a { color: #854F1C; text-decoration: none; }
+    a:hover { color: #6F4118; }
+
+    .wrap {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* Buttons matching official site */
+    .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
-      border: 0;
+      gap: 9px;
+      min-height: 52px;
+      padding: 0 28px;
+      border-radius: 9px;
+      background: #9C5F22;
+      border: 1px solid #6F4118;
+      color: #fff !important;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
       cursor: pointer;
-      border-radius: 999px;
-      padding: 16px 28px;
-      font-weight: 800;
-      font-size: 0.95rem;
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 8px 24px rgba(211, 109, 61, 0.25);
-      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 10px 22px rgba(166,101,36,0.22);
+      transition: background .16s ease, box-shadow .16s ease, transform .16s ease;
     }
-    .btn:hover {
-      background: var(--accent-dark);
+    .btn-primary:hover {
+      background: #854F1C;
+      box-shadow: 0 14px 28px rgba(140,86,31,0.26);
       transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(211, 109, 61, 0.32);
     }
-    .btn:active { transform: translateY(1px); }
-    .btn.secondary {
-      background: transparent;
-      color: var(--ink);
-      border: 1.5px solid var(--line);
-      box-shadow: none;
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 26px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(17,25,35,0.16);
+      color: #1A1712 !important;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background .16s ease, border-color .16s ease;
     }
-    .btn.secondary:hover {
-      background: rgba(0,0,0,0.03);
-      border-color: var(--ink);
+    .btn-secondary:hover {
+      background: #fff;
+      border-color: rgba(166,101,36,0.4);
     }
 
     /* Header */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(247, 244, 238, 0.94);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 60;
+      background: rgba(255, 253, 249, 0.97);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(221, 215, 205, 0.75);
+      border-bottom: 1px solid rgba(17, 25, 35, 0.08);
     }
     .nav {
-      height: 76px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 28px;
     }
     .brand {
-      font-size: 1.05rem;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .brand span {
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-      font-size: 0.85rem;
-      background: var(--soft);
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .phone {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
       text-decoration: none;
-      font-size: 0.92rem;
-      font-weight: 750;
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      color: inherit;
     }
-    .phone:hover { color: var(--accent-dark); }
-
-    /* Hero */
-    .hero { padding: 64px 0 54px; }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 52px;
-      align-items: center;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-    .proofline {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-      color: #4c4944;
-      font-weight: 500;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
-    }
-    .stars { letter-spacing: 0.08em; color: #ca6a37; font-size: 1.05rem; }
-    .dot { width: 4px; height: 4px; border-radius: 50%; background: #a79f94; }
-
-    /* Hero Visual Card */
-    .hero-panel {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      background: var(--dark);
-      color: #fff;
-    }
-    .hero-panel img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      display: block;
-      transition: filter 0.4s ease;
-    }
-    .hero-panel-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(36,34,31,0.1) 0%, rgba(36,34,31,0.88) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 30px;
-    }
-    .hero-panel-badge {
-      align-self: flex-start;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.72rem;
+    .brand-title {
+      font-size: 27px;
       font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 999px;
-      margin-bottom: 10px;
-    }
-    .hero-panel h3 {
-      font-size: 1.45rem;
-      font-weight: 850;
-      line-height: 1.25;
-      margin-bottom: 8px;
-    }
-    .hero-panel p {
-      font-size: 0.92rem;
-      color: #ddd7cd;
-      line-height: 1.5;
-    }
-
-    /* Sections */
-    section { padding: 80px 0; }
-    .section-head { max-width: 800px; margin-bottom: 38px; }
-    .section-head p { font-size: 1.08rem; color: var(--muted); line-height: 1.6; }
-    .soft { background: var(--soft); }
-
-    /* 3 Pillars Grid */
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      margin-bottom: 16px;
-      color: var(--accent-dark);
-    }
-    .card h3 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .card p {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* Interactive Canberra Controls Simulator */
-    .sim-shell {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 40px;
-      box-shadow: var(--shadow);
-      margin-top: 40px;
-    }
-    .sim-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 44px;
-      align-items: center;
-    }
-    .sim-controls {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-    .sim-row {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .sim-label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.88rem;
-      font-weight: 750;
-    }
-    .sim-badge-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      color: var(--accent-dark);
-      background: var(--soft);
-      padding: 2px 10px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-    }
-    input[type=range] {
-      width: 100%;
-      height: 8px;
-      border-radius: 4px;
-      background: var(--line);
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
-    .toggles-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 16px;
-      background: var(--paper);
-      border-radius: 14px;
-      border: 1px solid var(--line);
-    }
-    .toggle-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .toggle-item input {
-      width: 20px;
-      height: 20px;
-      accent-color: var(--success);
-      cursor: pointer;
-    }
-
-    /* Simulator Output Card */
-    .sim-result-card {
-      background: var(--dark);
-      color: #fff;
-      border-radius: 22px;
-      padding: 34px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-    }
-    .sim-result-header {
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      padding-bottom: 16px;
-      margin-bottom: 20px;
-    }
-    .sim-result-header span {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: #f0c5ae;
-    }
-    .sim-result-header h4 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-top: 4px;
-    }
-    .sim-big-stat {
-      margin: 14px 0 20px;
-    }
-    .sim-big-stat .amount {
-      font-size: 2.8rem;
-      font-weight: 900;
-      font-family: 'JetBrains Mono', monospace;
-      color: #34d399;
+      letter-spacing: -0.05em;
       line-height: 1;
-      letter-spacing: -0.03em;
     }
-    .sim-big-stat .label {
-      font-size: 0.85rem;
-      color: #d4cec4;
-      margin-top: 6px;
+    .brand-title span {
+      color: #9C5F22;
+      font-weight: 450;
     }
-    .sim-breakdown {
+    .brand-sub {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: #6B6355;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #222a34;
+    }
+    .nav-links a { color: inherit; }
+    .nav-links a:hover { color: #9C5F22; }
+
+    /* Trust highlights strip */
+    .trust-strip {
+      background: #fff;
+      border: 1px solid rgba(17,25,35,0.1);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(25,28,33,0.08);
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      margin-bottom: 22px;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: hidden;
+      margin-top: -40px;
+      position: relative;
+      z-index: 10;
     }
-    .sim-breakdown-item strong {
-      display: block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.25rem;
-      color: #fff;
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 26px;
+      border-right: 1px solid rgba(17,25,35,0.08);
     }
-    .sim-breakdown-item span {
-      font-size: 0.76rem;
-      color: #a79f94;
+    .trust-item:last-child { border-right: none; }
+    .trust-icon {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: #FBF7F0;
+      border: 1px solid rgba(166,101,36,0.2);
+      display: inline-grid;
+      place-items: center;
     }
 
-    /* Case Studies with Real Photos */
-    .case-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      overflow: hidden;
+    /* Cards */
+    .service-card {
       display: flex;
       flex-direction: column;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.04);
+      background: #fff;
+      border: 1px solid rgba(17,25,35,0.09);
+      border-radius: 14px;
+      overflow: hidden;
+      color: inherit;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      transition: border-color .18s ease, box-shadow .18s ease;
     }
-    .case-card img {
+    .service-card:hover {
+      border-color: rgba(166,101,36,0.4);
+      box-shadow: 0 12px 32px rgba(25,28,33,0.08);
+    }
+    .service-card img {
       width: 100%;
-      height: 220px;
+      height: 200px;
       object-fit: cover;
       display: block;
     }
-    .case-card-body {
-      padding: 24px;
+    .service-card-body {
+      padding: 24px 26px 26px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .case-card-meta {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: var(--accent-dark);
-      margin-bottom: 6px;
-    }
-    .case-card h3 {
-      font-size: 1.25rem;
-      font-weight: 850;
-      margin-bottom: 8px;
-    }
-    .case-card p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.55;
-      margin-bottom: 18px;
-    }
-    .case-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
-    }
-    .case-stat strong {
-      display: block;
-      font-size: 1.35rem;
-      font-weight: 850;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--accent-dark);
-    }
-    .case-stat span {
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
 
-    /* Form Section */
-    .form-section { background: var(--white); }
-    .form-shell {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 58px;
-      align-items: start;
-    }
-    form {
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 34px;
-      background: var(--paper);
-      box-shadow: var(--shadow);
-    }
-    .field { margin-bottom: 18px; }
-    label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 800;
-      margin-bottom: 7px;
-      color: var(--ink);
-    }
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid #d6d0c6;
-      border-radius: 12px;
+    /* Interactive Simulator Card */
+    .sim-box {
       background: #fff;
-      padding: 14px;
-      font: inherit;
-      color: var(--ink);
-      font-size: 0.95rem;
-      transition: border-color 0.15s ease;
-    }
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(211,109,61,0.12);
-    }
-    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .file-dropzone {
-      border: 2px dashed #cfc8bd;
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-      background: #faf7f2;
-      cursor: pointer;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .fineprint {
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-align: center;
-      margin-top: 14px;
-      line-height: 1.5;
-    }
-
-    /* Trust / Why Kieran */
-    .trust-strip {
-      background: var(--dark);
-      color: #fff;
-      padding: 44px 0;
-    }
-    .trust-grid {
+      border: 1px solid rgba(17,25,35,0.12);
+      border-radius: 20px;
+      padding: 38px clamp(24px, 4vw, 42px);
+      box-shadow: 0 16px 44px rgba(25,28,33,0.07);
+      margin-top: 36px;
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 36px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 42px;
       align-items: center;
     }
-    .trust-badges {
+    .preset-btn {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(17,25,35,0.14);
+      background: #FAF8F3;
+      color: #1A1712;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+    .preset-btn.active {
+      background: #9C5F22;
+      color: #fff;
+      border-color: #6F4118;
+    }
+    input[type=range] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: #e2ddd3;
+      accent-color: #9C5F22;
+      cursor: pointer;
+    }
+    .sim-result-panel {
+      background: linear-gradient(150deg, #2B2417, #17120B);
+      color: #fff;
+      border-radius: 16px;
+      padding: 32px 28px;
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .trust-badge {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      padding: 14px 20px;
-      text-align: center;
-    }
-    .trust-badge strong {
-      display: block;
-      font-size: 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      color: #34d399;
-    }
-    .trust-badge span {
-      font-size: 0.76rem;
-      color: #d4cec4;
-    }
-
-    /* Footer */
-    footer {
-      padding: 45px 0 75px;
-      background: #171614;
-      color: #ded9cf;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .footer-grid {
-      display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      gap: 20px;
-      align-items: center;
-      flex-wrap: wrap;
+      height: 100%;
     }
 
     /* Responsive */
-    @media(max-width: 960px) {
-      .hero-grid, .form-shell, .sim-grid, .trust-grid { grid-template-columns: 1fr; }
-      .grid { grid-template-columns: 1fr; }
-      .sim-breakdown { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 1100px) {
+      .trust-strip { grid-template-columns: 1fr 1fr; }
+      .service-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .process-split, .editorial, .sim-box { grid-template-columns: 1fr !important; }
     }
-    @media(max-width: 650px) {
-      .wrap { width: calc(100% - 28px); }
-      .nav { height: 64px; }
-      .brand span, .phone span { display: none; }
-      .two { grid-template-columns: 1fr; }
-      h1 { font-size: 2.7rem; }
-      section { padding: 56px 0; }
-      .sim-shell { padding: 24px; }
+    @media (max-width: 860px) {
+      .nav-links, .nav-phone { display: none !important; }
+      .service-grid, .trust-strip { grid-template-columns: 1fr !important; }
+      .sec-head { flex-direction: column; align-items: flex-start !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Sticky Navigation Bar -->
+  <!-- FIXED NAVIGATION BAR -->
   <header>
     <div class="wrap nav">
-      <div class="brand">
-        LED Solutions <span>Canberra</span>
-      </div>
-      <div class="nav-right">
-        <a class="phone" href="tel:1300763122">
-          📞 <strong>1300 763 122</strong>
-          <span style="font-size:0.8rem; color:var(--muted); font-weight:500;">(Kieran: 0415 343 050)</span>
+      <a href="https://ledsolutions.com.au/" aria-label="LED Solutions home" class="brand">
+        <span class="brand-title">LED <span>Solutions</span></span>
+        <span class="brand-sub">Design · Supply · Install</span>
+      </a>
+
+      <nav aria-label="Primary" class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#commercial">Commercial &amp; Strata</a>
+        <a href="#simulator">Controls Simulator</a>
+        <a href="#cases">Case Studies</a>
+        <a href="#about">About Kieran</a>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:18px;">
+        <a href="tel:1300763122" class="nav-phone" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:#2b3037;white-space:nowrap;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9C5F22" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0 8.3 6.7 15 15 15 .7 0 1.3-.4 1.6-1l.9-2.3a1 1 0 0 0-.5-1.3l-3.4-1.5a1 1 0 0 0-1.2.3l-1 1.2A12 12 0 0 1 9.4 9l1.2-1a1 1 0 0 0 .3-1.2L9.4 3.4a1 1 0 0 0-1.3-.5L5.8 3.8A1.7 1.7 0 0 0 4 5Z"/></svg>
+          1300 763 122
         </a>
-        <a class="btn" href="#lead">Get Free Estimate</a>
+        <a href="#quote" class="btn-primary" style="min-height:44px;padding:0 20px;font-size:14px;">Get a quote</a>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="eyebrow">LED Solutions · Canberra Commercial & Strata</div>
-          <h1>Your biggest lighting saving might be the hours you don’t need the lights on.</h1>
-          <p class="lead">
+  <main id="top" style="padding-top:80px;">
+
+    <!-- HERO SECTION WITH OFFICIAL CANBERRA TELSTRA TOWER & KIERAN'S VAN -->
+    <section aria-label="Commercial lighting savings hero" style="position:relative;background:#f4eee5;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-image:url('assets/canberra_header.webp');background-size:cover;background-position:right 22%;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(250,246,239,0.97) 0%, rgba(250,246,239,0.90) 28%, rgba(250,246,239,0.45) 45%, rgba(250,246,239,0) 70%);"></div>
+      <div style="position:absolute;inset:auto 0 0;height:60px;background:linear-gradient(180deg,rgba(255,253,249,0),#FAF8F3);"></div>
+
+      <div class="wrap" style="position:relative;z-index:2;padding:84px 0 110px;">
+        <div style="max-width:580px;">
+          <div style="display:inline-flex;align-items:center;gap:10px;color:#854F1C;font-size:12px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:20px;">
+            <span style="width:26px;height:2px;background:#C79255;display:inline-block;"></span>CANBERRA COMMERCIAL &amp; STRATA LIGHTING
+          </div>
+          <h1 style="font-size:clamp(36px,5.0vw,60px);line-height:1.04;letter-spacing:-0.035em;font-weight:800;margin:0 0 20px;color:#1A1712;">
+            Your biggest lighting saving might be the hours you don’t need the lights on.
+          </h1>
+          <p style="max-width:500px;color:#26313f;font-size:18px;line-height:1.65;margin:0 0 30px;">
             We look at the fittings, the controls and the operating hours to find where a commercial or strata property in Canberra may be wasting electricity.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn" href="#lead">Get a free lighting savings estimate</a>
-            <a class="btn secondary" href="#simulator">Explore Controls Simulator ↓</a>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:26px;">
+            <a href="#quote" class="btn-primary">
+              Get a free savings estimate
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#simulator" class="btn-secondary">Explore Controls Simulator ↓</a>
           </div>
 
-          <div class="proofline">
-            <span class="stars">★★★★★</span>
-            <strong>5.0 on Google</strong>
-            <span class="dot"></span>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:#554e42;padding-top:14px;border-top:1px solid rgba(17,25,35,0.12);">
+            <span style="color:#C79255;letter-spacing:0.08em;">★★★★★</span>
+            <strong style="color:#1A1712;">5.0 on Google</strong>
+            <span style="color:#9e978a;">·</span>
             <span>27 reviews</span>
-            <span class="dot"></span>
+            <span style="color:#9e978a;">·</span>
             <span>14 years in Canberra</span>
-            <span class="dot"></span>
+            <span style="color:#9e978a;">·</span>
             <span>57,000+ lights installed</span>
           </div>
         </div>
-
-        <!-- Real Commercial Warehouse Photo Hero Panel -->
-        <div class="hero-panel">
-          <img src="images/hero-warehouse.jpg" alt="Commercial logistics warehouse with modern LED high bay lighting">
-          <div class="hero-panel-overlay">
-            <span class="hero-panel-badge">Canberra Case Proof</span>
-            <h3>If your lights run at 100% at 2am, LED is only half your saving.</h3>
-            <p>Smart occupancy sensors & background dimming cut commercial power draw by up to 68%.</p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- Where the Savings Often Are (The 3 Pillars) -->
-    <section class="soft">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="eyebrow">Where the savings often are</div>
-          <h2>LED is only half the story.</h2>
-          <p>
-            The fitting reduces how much electricity the light uses. The controls reduce how long you pay for it.
-          </p>
+    <!-- TRUST STRIP WITH OFFICIAL ICONS -->
+    <div class="wrap">
+      <div class="trust-strip">
+        <div class="trust-item">
+          <span class="trust-icon"><img src="assets/clock.png" alt="" width="22" height="22"></span>
+          <b style="font-size:14px;font-weight:700;line-height:1.35;">14 years serving<br>Canberra</b>
         </div>
-
-        <div class="grid">
-          <div class="card">
-            <div>
-              <div class="card-icon">🚶</div>
-              <h3>Occupancy</h3>
-              <p>Switch or dim lighting automatically when corridors, carparks, or warehouse bays are empty.</p>
-            </div>
-          </div>
-          <div class="card">
-            <div>
-              <div class="card-icon">🌓</div>
-              <h3>Dimming</h3>
-              <p>Maintain safe, compliant 30% background light for security without paying for 100% continuous output.</p>
-            </div>
-          </div>
-          <div class="card">
-            <div>
-              <div class="card-icon">⏱️</div>
-              <h3>Timing</h3>
-              <p>Stop exterior, carpark, and common-area lights running longer than required during daylight hours.</p>
-            </div>
-          </div>
+        <div class="trust-item">
+          <span class="trust-icon"><img src="assets/security-3.png" alt="" width="22" height="22"></span>
+          <b style="font-size:14px;font-weight:700;line-height:1.35;">Placement planned<br>before quoting</b>
         </div>
-
-        <!-- Interactive Canberra Commercial Controls Simulator -->
-        <div class="sim-shell" id="simulator">
-          <div class="sim-grid">
-            <div class="sim-controls">
-              <div>
-                <span class="eyebrow">Interactive Calculator</span>
-                <h3 style="font-size:1.6rem; font-weight:850; margin:4px 0 10px;">
-                  Model Your Property's Controls Savings
-                </h3>
-                <p style="font-size:0.92rem; color:var(--muted);">
-                  Pre-configured with current Evoenergy ACT commercial electricity tariff ($0.32/kWh).
-                </p>
-              </div>
-
-              <!-- Property Type Preset -->
-              <div class="sim-row">
-                <div class="sim-label-row">
-                  <span>Property Type</span>
-                </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
-                  <button type="button" class="btn secondary type-preset-btn active" data-type="strata" style="padding:10px 14px; font-size:0.82rem; border-radius:10px; font-weight:700;">
-                    🏢 Strata Carpark (24/7)
-                  </button>
-                  <button type="button" class="btn secondary type-preset-btn" data-type="warehouse" style="padding:10px 14px; font-size:0.82rem; border-radius:10px; font-weight:700;">
-                    🏭 Warehouse (14h/day)
-                  </button>
-                  <button type="button" class="btn secondary type-preset-btn" data-type="office" style="padding:10px 14px; font-size:0.82rem; border-radius:10px; font-weight:700;">
-                    🏬 Office (10h/day)
-                  </button>
-                </div>
-              </div>
-
-              <!-- Number of Lights Slider -->
-              <div class="sim-row">
-                <div class="sim-label-row">
-                  <span>Number of Light Fittings</span>
-                  <span class="sim-badge-val" id="sim-lights-val">74 fittings</span>
-                </div>
-                <input id="sim-lights" type="range" min="15" max="250" step="1" value="74">
-                <small style="color:var(--muted); font-size:0.78rem;">Example: IRT Kangara Waters had 74 lights per building across 5 buildings.</small>
-              </div>
-
-              <!-- Smart Control Checkboxes -->
-              <div class="toggles-group">
-                <label class="toggle-item">
-                  <span>🚶 Smart Occupancy Sensors (Shut off 43% when vacant)</span>
-                  <input id="chk-occupancy" type="checkbox" checked>
-                </label>
-                <label class="toggle-item">
-                  <span>🌓 Background Dimming (Dims to 30% after 15 minutes)</span>
-                  <input id="chk-dimming" type="checkbox" checked>
-                </label>
-              </div>
-            </div>
-
-            <!-- Simulator Output Card -->
-            <div class="sim-result-card">
-              <div>
-                <div class="sim-result-header">
-                  <span>Canberra Commercial Estimate</span>
-                  <h4>Calculated Annual Impact</h4>
-                </div>
-
-                <div class="sim-big-stat">
-                  <div class="amount" id="sim-annual-savings">$14,240 AUD</div>
-                  <div class="label">Estimated Net Power Savings / Year</div>
-                </div>
-
-                <div class="sim-breakdown">
-                  <div class="sim-breakdown-item">
-                    <strong id="sim-cut-percent">-68%</strong>
-                    <span>Total Electricity Cut</span>
-                  </div>
-                  <div class="sim-breakdown-item">
-                    <strong id="sim-payback">7.8 Mo</strong>
-                    <span>Estimated Payback</span>
-                  </div>
-                  <div class="sim-breakdown-item">
-                    <strong id="sim-hours-off">43%</strong>
-                    <span>Hours Powered Down</span>
-                  </div>
-                  <div class="sim-breakdown-item">
-                    <strong id="sim-co2">31.4 T</strong>
-                    <span>CO₂ Abated / Year</span>
-                  </div>
-                </div>
-              </div>
-
-              <a href="#lead" id="prefill-btn" class="btn" style="width:100%; text-align:center;">
-                Pre-fill My Quote with These Numbers →
-              </a>
-            </div>
-          </div>
+        <div class="trust-item">
+          <span class="trust-icon"><img src="assets/dashboard.png" alt="" width="22" height="22"></span>
+          <b style="font-size:14px;font-weight:700;line-height:1.35;">Licensed &amp; fully<br>insured (#2009974)</b>
         </div>
-
-      </div>
-    </section>
-
-    <!-- Canberra Real Case Studies Section -->
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <div class="eyebrow">Real Canberra Case Studies</div>
-          <h2>Controls changed the equation across the ACT.</h2>
-          <p>
-            No generic claims or recycled blog stats. Here are three verified local projects where Kieran and LED Solutions installed smart fittings and intelligent controls.
-          </p>
-        </div>
-
-        <div class="grid">
-          <!-- Case Study 1: Kangara Waters -->
-          <div class="case-card">
-            <img src="images/commercial-building.jpg" alt="IRT Kangara Waters apartment buildings Belconnen">
-            <div class="case-card-body">
-              <div>
-                <div class="case-card-meta">Belconnen, ACT · Multi-Residential</div>
-                <h3>IRT Kangara Waters</h3>
-                <p>
-                  Five apartment buildings, 74 lights per building. When corridors are vacant, 43% switch off and the remainder dim to 30%. Occupancy returns lighting to 100%, then times back down after 30 minutes.
-                </p>
-              </div>
-              <div class="case-stats">
-                <div class="case-stat">
-                  <strong>68%</strong>
-                  <span>Power Cut</span>
-                </div>
-                <div class="case-stat">
-                  <strong>43%</strong>
-                  <span>Off When Vacant</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Case Study 2: Strata Carpark -->
-          <div class="case-card">
-            <img src="images/carpark-lighting.jpg" alt="Underground strata carpark with IP65 LED batten lighting">
-            <div class="case-card-body">
-              <div>
-                <div class="case-card-meta">Braddon, ACT · 42-Unit Strata</div>
-                <h3>Underground Strata Carpark</h3>
-                <p>
-                  Continuous 24/7 twin T8 fluorescent battens upgraded to integrated IP65 LED tri-proof fittings with microwave corridor sensors and AS2293 certified emergency battery backups.
-                </p>
-              </div>
-              <div class="case-stats">
-                <div class="case-stat">
-                  <strong>74%</strong>
-                  <span>24/7 Energy Drop</span>
-                </div>
-                <div class="case-stat">
-                  <strong>AS2293</strong>
-                  <span>Signed Off</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Case Study 3: Commercial Office & Warehouse -->
-          <div class="case-card">
-            <img src="images/commercial-office.jpg" alt="Commercial office corridor lighting in Canberra">
-            <div class="case-card-body">
-              <div>
-                <div class="case-card-meta">Fyshwick, ACT · Commercial Hub</div>
-                <h3>Fyshwick Commercial Depot</h3>
-                <p>
-                  Replaced failing 400W metal halide high-bays with 150W precision-optic LED fittings with daylight harvesting sensors that dim automatically during sunny Canberra afternoons.
-                </p>
-              </div>
-              <div class="case-stats">
-                <div class="case-stat">
-                  <strong>$31.4k</strong>
-                  <span>Saved Annually</span>
-                </div>
-                <div class="case-stat">
-                  <strong>6.1 Mo</strong>
-                  <span>Payback</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Why Kieran & LED Solutions Canberra Strip -->
-    <div class="trust-strip">
-      <div class="wrap trust-grid">
-        <div>
-          <span class="eyebrow" style="color:#f0c5ae;">14 Years in Canberra · Licence #2009974</span>
-          <h3 style="font-size:1.8rem; font-weight:850; margin:6px 0 10px;">
-            Why Canberra Facility & Strata Managers Deal Directly with Kieran
-          </h3>
-          <p style="font-size:0.95rem; color:#d7d1c7; max-width:620px; line-height:1.6;">
-            We don’t use commissioned salesmen. Kieran personally audits your property, analyzes your Evoenergy bill, models the photometric lux compliance to Australian Standard AS/NZS 1680, and manages our licensed electricians on site.
-          </p>
-        </div>
-
-        <div class="trust-badges">
-          <div class="trust-badge">
-            <strong>14+</strong>
-            <span>Years in ACT</span>
-          </div>
-          <div class="trust-badge">
-            <strong>57,000+</strong>
-            <span>Lights Installed</span>
-          </div>
-          <div class="trust-badge">
-            <strong>5.0 ★</strong>
-            <span>27 Google Reviews</span>
-          </div>
+        <div class="trust-item">
+          <span class="trust-icon"><img src="assets/check.png" alt="" width="22" height="22"></span>
+          <b style="font-size:14px;font-weight:700;line-height:1.35;">Workmanship<br>guaranteed</b>
         </div>
       </div>
     </div>
 
-    <!-- Lead Form Section -->
-    <section class="form-section" id="lead">
-      <div class="wrap form-shell">
-        <div>
-          <div class="eyebrow">Free Initial Review</div>
-          <h2>Get a free lighting savings estimate.</h2>
-          <p class="lead" style="font-size:1.05rem;">
-            Send us some basic site details, lighting information or a recent electricity bill and we’ll identify the first opportunities worth investigating.
-          </p>
+    <!-- THE 3 PILLARS: WHERE THE SAVINGS OFTEN ARE -->
+    <section id="commercial" style="padding:90px 0 70px;">
+      <div class="wrap">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px;" class="sec-head">
+          <div style="max-width:640px;">
+            <div style="color:#854F1C;font-size:12px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">Where the savings often are</div>
+            <h2 style="font-size:clamp(30px,3.4vw,46px);line-height:1.06;letter-spacing:-0.03em;font-weight:800;margin:0 0 10px;">LED is only half the story.</h2>
+            <p style="color:#6B6355;font-size:16.5px;line-height:1.6;margin:0;">The fitting reduces how much electricity the light uses. The controls reduce how long you pay for it.</p>
+          </div>
+        </div>
 
-          <div style="margin:28px 0; display:flex; flex-direction:column; gap:12px; font-size:0.92rem; color:#4a4741;">
-            <div style="display:flex; gap:10px; align-items:center;">
-              <span style="color:var(--success); font-weight:900;">✓</span>
-              <span>Kieran personally reviews your site details and bills.</span>
-            </div>
-            <div style="display:flex; gap:10px; align-items:center;">
-              <span style="color:var(--success); font-weight:900;">✓</span>
-              <span>No obligation — clear commercial ROI and payback figures.</span>
-            </div>
-            <div style="display:flex; gap:10px; align-items:center;">
-              <span style="color:var(--success); font-weight:900;">✓</span>
-              <span>ACT Energy Efficiency Improvement Scheme (EEIS) eligible.</span>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;" class="service-grid">
+          <div class="service-card">
+            <div class="service-card-body">
+              <div>
+                <span style="font-size:26px;display:block;margin-bottom:10px;">🚶</span>
+                <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">Occupancy</h3>
+                <p style="color:#6B6355;font-size:15px;line-height:1.6;">Switch or dim lighting automatically when corridors, carparks or warehouse aisles are vacant.</p>
+              </div>
             </div>
           </div>
-
-          <div style="padding:20px; background:var(--soft); border-radius:16px; border:1px solid var(--line);">
-            <div style="font-size:0.85rem; font-weight:800; margin-bottom:4px;">Prefer to speak directly?</div>
-            <div style="font-size:0.9rem; color:var(--muted);">
-              Call Kieran directly: <a href="tel:0415343050" style="color:var(--accent-dark); font-weight:800;">0415 343 050</a> or office <a href="tel:1300763122" style="font-weight:750;">1300 763 122</a>
+          <div class="service-card">
+            <div class="service-card-body">
+              <div>
+                <span style="font-size:26px;display:block;margin-bottom:10px;">🌓</span>
+                <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">Dimming</h3>
+                <p style="color:#6B6355;font-size:15px;line-height:1.6;">Maintain useful background light (e.g. 30%) for safety without paying for 100% output during quiet hours.</p>
+              </div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-card-body">
+              <div>
+                <span style="font-size:26px;display:block;margin-bottom:10px;">⏱️</span>
+                <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">Timing</h3>
+                <p style="color:#6B6355;font-size:15px;line-height:1.6;">Stop exterior, carpark and common-area lighting running longer than required during daylight hours.</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- The Contact Form -->
-        <form id="lead-form" onsubmit="handleFormSubmit(event)">
-          <div class="two">
-            <div class="field">
-              <label>Name</label>
-              <input id="f-name" required placeholder="Your full name">
+        <!-- INTERACTIVE CANBERRA CONTROLS SIMULATOR -->
+        <div class="sim-box" id="simulator">
+          <div>
+            <div style="color:#854F1C;font-size:12px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;">Canberra Savings Engine</div>
+            <h3 style="font-size:24px;font-weight:800;margin-bottom:8px;">Model Your Property's Controls Savings</h3>
+            <p style="color:#6B6355;font-size:15px;margin-bottom:24px;">Pre-configured with current Evoenergy ACT commercial electricity tariff ($0.32/kWh).</p>
+
+            <!-- Presets -->
+            <div style="margin-bottom:20px;">
+              <label style="display:block;font-size:13px;font-weight:700;margin-bottom:8px;">Property Type</label>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button type="button" class="preset-btn active" data-type="strata">🏢 Strata Carpark (24/7)</button>
+                <button type="button" class="preset-btn" data-type="warehouse">🏭 Warehouse (14h/day)</button>
+                <button type="button" class="preset-btn" data-type="office">🏬 Commercial Office (10h/day)</button>
+              </div>
             </div>
-            <div class="field">
-              <label>Phone</label>
-              <input id="f-phone" type="tel" required placeholder="04xx xxx xxx">
+
+            <!-- Slider -->
+            <div style="margin-bottom:22px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <label style="font-size:13px;font-weight:700;">Number of Light Fittings</label>
+                <span id="sim-lights-val" style="font-weight:800;font-size:15px;color:#9C5F22;background:#FAF8F3;padding:2px 10px;border-radius:6px;border:1px solid rgba(17,25,35,0.08);">74 fittings</span>
+              </div>
+              <input id="sim-lights" type="range" min="15" max="250" step="1" value="74">
+              <small style="color:#78716c;font-size:12px;display:block;margin-top:4px;">Example: IRT Kangara Waters had 74 lights per building across 5 buildings.</small>
+            </div>
+
+            <!-- Toggles -->
+            <div style="background:#FAF8F3;border:1px solid rgba(17,25,35,0.1);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:14px;font-weight:600;">
+                <span>🚶 Smart Occupancy Sensors (Shut off 43% when vacant)</span>
+                <input id="chk-occupancy" type="checkbox" checked style="width:18px;height:18px;accent-color:#9C5F22;">
+              </label>
+              <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:14px;font-weight:600;">
+                <span>🌓 Background Dimming (Dims to 30% after 15 minutes)</span>
+                <input id="chk-dimming" type="checkbox" checked style="width:18px;height:18px;accent-color:#9C5F22;">
+              </label>
             </div>
           </div>
 
-          <div class="two">
-            <div class="field">
-              <label>Email</label>
-              <input id="f-email" type="email" required placeholder="name@company.com.au">
+          <!-- Simulator Result Card -->
+          <div class="sim-result-panel">
+            <div>
+              <div style="color:#C79255;font-size:12px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:6px;">Calculated ACT Savings</div>
+              <h4 style="color:#fff;font-size:18px;font-weight:700;margin-bottom:14px;">Estimated Annual Impact</h4>
+
+              <div style="margin-bottom:18px;">
+                <div id="sim-annual-savings" style="font-size:40px;font-weight:800;color:#34d399;line-height:1;letter-spacing:-0.03em;">$12,784 AUD</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;">Estimated Net Power Savings / Year</div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.12);margin-bottom:20px;">
+                <div>
+                  <strong id="sim-cut-percent" style="font-size:22px;color:#fff;display:block;">-86%</strong>
+                  <span style="font-size:11px;color:rgba(255,255,255,0.6);">Electricity Drop</span>
+                </div>
+                <div>
+                  <strong id="sim-payback" style="font-size:22px;color:#fff;display:block;">12.9 Mo</strong>
+                  <span style="font-size:11px;color:rgba(255,255,255,0.6);">Estimated Payback</span>
+                </div>
+                <div>
+                  <strong id="sim-hours-off" style="font-size:22px;color:#fff;display:block;">43%</strong>
+                  <span style="font-size:11px;color:rgba(255,255,255,0.6);">Off When Vacant</span>
+                </div>
+                <div>
+                  <strong id="sim-co2" style="font-size:22px;color:#fff;display:block;">28.4 T</strong>
+                  <span style="font-size:11px;color:rgba(255,255,255,0.6);">CO₂ Abated / Yr</span>
+                </div>
+              </div>
             </div>
-            <div class="field">
-              <label>Suburb / Property</label>
-              <input id="f-suburb" required placeholder="e.g. Fyshwick, Belconnen, Mitchell">
-            </div>
-          </div>
 
-          <div class="field">
-            <label>Tell us a little about the project</label>
-            <textarea id="f-notes" rows="4" placeholder="e.g. 74 fluorescent battens in underground strata carpark running 24/7. Interested in microwave sensors and emergency light sign-off."></textarea>
+            <a href="#quote" id="prefill-btn" class="btn-primary" style="width:100%;text-align:center;">
+              Pre-fill Estimate for 74 Fittings →
+            </a>
           </div>
-
-          <div class="field">
-            <label>Upload plans / photos / electricity bills (Optional)</label>
-            <div class="file-dropzone" onclick="document.getElementById('f-files').click()">
-              <input id="f-files" type="file" multiple style="display:none;" onchange="handleFileSelect(event)">
-              <div id="dropzone-text">📁 Click or drop electricity bills / floor plans here</div>
-            </div>
-          </div>
-
-          <button class="btn" type="submit" style="width:100%;">
-            Get a free lighting savings estimate
-          </button>
-          <p class="fineprint">
-            We respect your privacy. Kieran will review your site data and respond within 1 business day.
-          </p>
-
-          <!-- Success Alert Message -->
-          <div id="form-success" style="display:none; margin-top:18px; padding:18px; background:#ecfdf5; border:1px solid #6ee7b7; border-radius:12px; text-align:center;">
-            <div style="font-size:1.4rem; margin-bottom:4px;">🎉</div>
-            <strong style="color:#065f46; font-size:1rem; display:block;">Estimate Request Received!</strong>
-            <p style="color:#047857; font-size:0.85rem; margin-top:4px;">
-              Kieran from LED Solutions Canberra will review your facility specifications and call you within 1 business day.<br>
-              Reference Code: <strong id="ref-code" style="font-family:'JetBrains Mono', monospace;">ACT-LED-492810</strong>
-            </p>
-          </div>
-        </form>
+        </div>
 
       </div>
     </section>
+
+    <!-- REAL CANBERRA CASE STUDIES -->
+    <section id="cases" style="padding:50px 0 90px;background:#FBF7F0;">
+      <div class="wrap">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px;" class="sec-head">
+          <div style="max-width:640px;">
+            <div style="color:#854F1C;font-size:12px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;">Canberra Case Examples</div>
+            <h2 style="font-size:clamp(30px,3.4vw,46px);line-height:1.06;letter-spacing:-0.03em;font-weight:800;margin:0 0 10px;">Controls changed the equation across the ACT.</h2>
+            <p style="color:#6B6355;font-size:16.5px;line-height:1.6;margin:0;">Verified local results from Belconnen, Braddon, and Fyshwick.</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;" class="service-grid">
+          <!-- Kangara Waters -->
+          <div class="service-card">
+            <img src="images/commercial-building.jpg" alt="IRT Kangara Waters Belconnen">
+            <div class="service-card-body">
+              <div>
+                <div style="color:#854F1C;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Belconnen, ACT · Multi-Residential</div>
+                <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">IRT Kangara Waters</h3>
+                <p style="color:#6B6355;font-size:14.5px;line-height:1.6;margin-bottom:16px;">Five apartment buildings, 74 lights per building. When vacant, 43% switch off and remainder dim to 30%. Occupancy returns lighting to 100%, then times down after 30 minutes.</p>
+              </div>
+              <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(17,25,35,0.08);padding-top:14px;">
+                <div><strong style="font-size:20px;color:#9C5F22;">68%</strong><span style="display:block;font-size:11px;color:#6B6355;">Power Cut</span></div>
+                <div><strong style="font-size:20px;color:#1A1712;">43%</strong><span style="display:block;font-size:11px;color:#6B6355;">Off When Vacant</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Strata Carpark -->
+          <div class="service-card">
+            <img src="assets/commercial-carpark.webp" alt="Strata underground carpark lighting">
+            <div class="service-card-body">
+              <div>
+                <div style="color:#854F1C;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Braddon, ACT · 42-Unit Strata</div>
+                <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">Underground Strata Carpark</h3>
+                <p style="color:#6B6355;font-size:14.5px;line-height:1.6;margin-bottom:16px;">Continuous 24/7 twin T8 fluorescent battens upgraded to integrated IP65 LED tri-proof fittings with microwave corridor sensors and AS2293 emergency sign-off.</p>
+              </div>
+              <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(17,25,35,0.08);padding-top:14px;">
+                <div><strong style="font-size:20px;color:#9C5F22;">74%</strong><span style="display:block;font-size:11px;color:#6B6355;">24/7 Drop</span></div>
+                <div><strong style="font-size:20px;color:#1A1712;">AS2293</strong><span style="display:block;font-size:11px;color:#6B6355;">Compliance</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fyshwick Depot -->
+          <div class="service-card">
+            <img src="images/hero-warehouse.jpg" alt="Commercial warehouse high-bay lighting">
+            <div class="service-card-body">
+              <div>
+                <div style="color:#854F1C;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Fyshwick, ACT · Commercial Hub</div>
+                <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">Fyshwick High-Bay Depot</h3>
+                <p style="color:#6B6355;font-size:14.5px;line-height:1.6;margin-bottom:16px;">Replaced 48 failing 400W metal halide fixtures with 150W precision-optic LED high-bays. Solved recurring ballast burnouts and lifted illuminance to AS/NZS 1680 standards.</p>
+              </div>
+              <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(17,25,35,0.08);padding-top:14px;">
+                <div><strong style="font-size:20px;color:#9C5F22;">$31.4k</strong><span style="display:block;font-size:11px;color:#6B6355;">Annual Saving</span></div>
+                <div><strong style="font-size:20px;color:#1A1712;">6.1 Mo</strong><span style="display:block;font-size:11px;color:#6B6355;">Payback</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OFFICIAL EDITORIAL: ROOM FIRST WITH KIERAN HOLDING LUMINAIRE -->
+    <section id="about" style="background:#221D15;color:#fff;overflow:hidden;">
+      <div style="display:grid;grid-template-columns:1.05fr 1fr;align-items:stretch;" class="editorial">
+        <div style="min-height:540px;background-image:linear-gradient(90deg,rgba(22,28,36,0) 60%,rgba(22,28,36,0.5) 100%),url('assets/room_first_lighting.webp');background-size:cover;background-position:center;" class="editorial-img"></div>
+        <div style="display:flex;align-items:center;padding:80px clamp(28px,5vw,80px);">
+          <div style="max-width:520px;">
+            <div style="color:#C79255;font-size:12px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:18px;">Why the room comes first</div>
+            <h2 style="font-family:Newsreader,serif;font-style:italic;font-weight:400;font-size:clamp(31px,3.4vw,48px);line-height:1.22;margin:0 0 22px;color:#fff;">Better lighting is not more light. It is the right light in the right place.</h2>
+            <p style="color:rgba(255,255,255,0.85);font-size:16px;line-height:1.65;margin-bottom:14px;">Good lighting changes how a facility behaves: warehouse aisles that forklift drivers can safely navigate, carparks that feel secure, and common areas that don't burn electricity at 2am.</p>
+            <p style="color:rgba(255,255,255,0.85);font-size:16px;line-height:1.65;margin-bottom:24px;">The fitting matters, but controls do more of the financial work. A quality high-bay left running 24/7 still wastes thousands of dollars a year.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:26px;">
+              <div style="font-size:15px;font-weight:700;color:#fff;">Balanced placement</div>
+              <div style="width:1px;background:rgba(255,255,255,0.16);"></div>
+              <div style="font-size:15px;font-weight:700;color:#fff;">Quality products</div>
+              <div style="width:1px;background:rgba(255,255,255,0.16);"></div>
+              <div style="font-size:15px;font-weight:700;color:#fff;">Clean installation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS + QUOTE FORM -->
+    <section id="quote" style="padding:100px 0;scroll-margin-top:96px;">
+      <div class="wrap" style="display:grid;grid-template-columns:0.92fr 1.08fr;gap:56px;align-items:start;" class="process-split">
+        <div>
+          <div style="color:#854F1C;font-size:12px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px;">How we work</div>
+          <h2 style="font-size:clamp(30px,3.3vw,46px);line-height:1.07;letter-spacing:-0.03em;font-weight:800;margin:0 0 22px;">One team to plan, supply and install your lighting.</h2>
+          <p style="color:#6B6355;font-size:17px;line-height:1.7;margin:0 0 34px;">Most lighting problems are created before the electrician arrives: wrong spacing, cheap drivers, cold colour, too many fixtures. The best result comes from making those decisions early, before holes are cut and money is spent twice.</p>
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:flex;gap:20px;padding:22px 0;border-top:1px solid rgba(17,25,35,0.1);">
+              <span style="flex:0 0 auto;font-size:14px;font-weight:800;color:#9C5F22;width:34px;">01</span>
+              <div><strong style="display:block;font-size:16px;margin-bottom:4px;">Understand</strong><span style="color:#6B6355;font-size:15px;">Your space, plans, pain points and the feeling you want.</span></div>
+            </div>
+            <div style="display:flex;gap:20px;padding:22px 0;border-top:1px solid rgba(17,25,35,0.1);">
+              <span style="flex:0 0 auto;font-size:14px;font-weight:800;color:#9C5F22;width:34px;">02</span>
+              <div><strong style="display:block;font-size:16px;margin-bottom:4px;">Plan</strong><span style="color:#6B6355;font-size:15px;">Zones, spacing, beam angle and switching.</span></div>
+            </div>
+            <div style="display:flex;gap:20px;padding:22px 0;border-top:1px solid rgba(17,25,35,0.1);">
+              <span style="flex:0 0 auto;font-size:14px;font-weight:800;color:#9C5F22;width:34px;">03</span>
+              <div><strong style="display:block;font-size:16px;margin-bottom:4px;">Specify</strong><span style="color:#6B6355;font-size:15px;">Quality fittings, colour, dimming and controls.</span></div>
+            </div>
+            <div style="display:flex;gap:20px;padding:22px 0;border-top:1px solid rgba(17,25,35,0.1);border-bottom:1px solid rgba(17,25,35,0.1);">
+              <span style="flex:0 0 auto;font-size:14px;font-weight:800;color:#9C5F22;width:34px;">04</span>
+              <div><strong style="display:block;font-size:16px;margin-bottom:4px;">Install</strong><span style="color:#6B6355;font-size:15px;">Clean workmanship, testing and aftercare.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OFFICIAL DARK QUOTE ASIDE FORM -->
+        <aside style="background:linear-gradient(150deg,#2B2417,#17120B);color:#fff;border-radius:18px;padding:44px clamp(26px,3vw,44px);box-shadow:0 18px 55px rgba(34,30,25,0.18);">
+          <h2 style="font-size:clamp(26px,2.6vw,34px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin:0 0 8px;color:#fff;">Get a quote for your lighting project.</h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:15px;margin:0 0 26px;">Tell us what you want to change. We reply within one business day, or call <a href="tel:1300763122" style="color:#C79255;font-weight:700;">1300 763 122</a>.</p>
+
+          <form id="quote-form" onsubmit="handleQuoteSubmit(event)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div style="grid-column:1 / -1;">
+                <label for="project-type" style="display:block;color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:0.03em;margin-bottom:7px;">Project type</label>
+                <select id="project-type" name="project-type" required style="width:100%;min-height:52px;border-radius:9px;border:1px solid rgba(255,255,255,0.26);background:rgba(255,255,255,0.07);color:#fff;padding:0 14px;font-size:15px;">
+                  <option value="Commercial lighting" style="color:#111">Commercial lighting upgrade</option>
+                  <option value="Strata repair or maintenance" style="color:#111">Strata repair or maintenance</option>
+                  <option value="Warehouse / Logistics" style="color:#111">Warehouse &amp; Logistics lighting</option>
+                  <option value="LED downlight installation" style="color:#111">LED downlight installation</option>
+                  <option value="Home lighting upgrade" style="color:#111">Home lighting upgrade</option>
+                </select>
+              </div>
+              <div>
+                <label for="name" style="display:block;color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:0.03em;margin-bottom:7px;">Name</label>
+                <input id="name" name="name" required placeholder="Your full name" style="width:100%;min-height:52px;border-radius:9px;border:1px solid rgba(255,255,255,0.26);background:rgba(255,255,255,0.07);color:#fff;padding:0 14px;font-size:15px;">
+              </div>
+              <div>
+                <label for="phone" style="display:block;color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:0.03em;margin-bottom:7px;">Phone</label>
+                <input id="phone" name="phone" type="tel" required placeholder="04xx xxx xxx" style="width:100%;min-height:52px;border-radius:9px;border:1px solid rgba(255,255,255,0.26);background:rgba(255,255,255,0.07);color:#fff;padding:0 14px;font-size:15px;">
+              </div>
+              <div style="grid-column:1 / -1;">
+                <label for="email" style="display:block;color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:0.03em;margin-bottom:7px;">Email</label>
+                <input id="email" name="email" type="email" required placeholder="name@company.com.au" style="width:100%;min-height:52px;border-radius:9px;border:1px solid rgba(255,255,255,0.26);background:rgba(255,255,255,0.07);color:#fff;padding:0 14px;font-size:15px;">
+              </div>
+              <div style="grid-column:1 / -1;">
+                <label for="message" style="display:block;color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:0.03em;margin-bottom:7px;">What do you need help with?</label>
+                <textarea id="message" name="message" placeholder="Example: 74 carpark battens running 24/7 in Braddon strata building, interested in microwave sensors." style="width:100%;min-height:104px;border-radius:9px;border:1px solid rgba(255,255,255,0.26);background:rgba(255,255,255,0.07);color:#fff;padding:14px;resize:vertical;font-size:15px;"></textarea>
+              </div>
+            </div>
+
+            <div style="margin-top:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+              <button type="submit" class="btn-primary" style="min-height:54px;padding:0 32px;font-size:16px;">
+                Request quote
+              </button>
+              <span style="display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.62);font-size:12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/></svg>
+                Free quote, no obligation. Your details are never shared.
+              </span>
+            </div>
+
+            <!-- Success State -->
+            <div id="quote-success" style="display:none;margin-top:20px;padding:22px;border-radius:12px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);text-align:center;">
+              <div style="color:#34d399;font-size:16px;font-weight:700;margin-bottom:4px;">Request Received!</div>
+              <p style="color:rgba(255,255,255,0.8);font-size:13px;margin:0;">Kieran will review your site specifications and respond within one business day.<br>Ref: <strong id="quote-ref" style="font-family:monospace;color:#34d399;">ACT-LED-842910</strong></p>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <!-- OFFICIAL GOOGLE REVIEWS SECTION -->
+    <section id="why" style="padding:100px 0;background:#FBF7F0;">
+      <div class="wrap">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:40px;" class="sec-head">
+          <div style="max-width:600px;">
+            <div style="color:#854F1C;font-size:12px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px;">Trusted locally</div>
+            <h2 style="font-size:clamp(30px,3.3vw,46px);line-height:1.07;letter-spacing:-0.03em;font-weight:800;margin:0;">14 years and more than 57,000 lights installed across Canberra.</h2>
+          </div>
+          <a href="https://www.google.com/search?q=LED+Solutions+Canberra" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:12px 18px;background:#fff;border:1px solid rgba(17,25,35,0.09);border-radius:12px;">
+            <span style="color:#C79255;">★★★★★</span>
+            <span style="font-size:13px;font-weight:700;color:#2b3037;">Read our Google reviews →</span>
+          </a>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:stretch;" class="service-grid">
+          <blockquote style="background:#fff;border:1px solid rgba(17,25,35,0.08);border-radius:14px;padding:30px 28px;">
+            <p style="font-family:Newsreader,serif;font-style:italic;font-size:19px;line-height:1.5;color:#2a2119;margin:0 0 18px;">LED Solutions planned the lighting for our renovation and the difference is incredible. The home feels warmer, brighter and it just works.</p>
+            <footer style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6355;">James &amp; Kate Morrison, Deakin<br><span style="font-weight:600;color:#8a8375;">Whole-home renovation, 2025</span></footer>
+          </blockquote>
+          <blockquote style="background:#fff;border:1px solid rgba(17,25,35,0.08);border-radius:14px;padding:30px 28px;">
+            <p style="font-family:Newsreader,serif;font-style:italic;font-size:19px;line-height:1.5;color:#2a2119;margin:0 0 18px;">They fixed the flickering downlights three other electricians couldn&#039;t. Clean, on time, and they explained everything as they went.</p>
+            <footer style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6355;">Strata manager, Braddon<br><span style="font-weight:600;color:#8a8375;">42-unit common-area maintenance</span></footer>
+          </blockquote>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:14px;background:#221D15;color:#fff;border-radius:14px;padding:30px 28px;">
+            <p style="font-family:Newsreader,serif;font-style:italic;font-size:19px;line-height:1.5;color:#fff;margin:0;">My first client, fourteen years ago, still hasn&#039;t had to change a downlight.</p>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#C79255;margin:0;">Kieran, founder</p>
+            <span style="font-size:13px;color:#d4cec4;">Canberra ACT · Licence #2009974</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA WITH KIERAN'S VAN IN FRONT OF CANBERRA TOWER -->
+    <section style="padding:0 0 90px;">
+      <div class="wrap">
+        <div style="position:relative;overflow:hidden;border-radius:22px;padding:clamp(44px,6vw,72px) clamp(28px,5vw,64px);color:#fff;background-image:linear-gradient(160deg,rgba(20,16,11,0.88) 0%,rgba(20,16,11,0.7) 45%,rgba(35,28,17,0.6) 100%),url('assets/van-tower.webp');background-size:cover;background-position:center 45%;min-height:340px;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;" class="final-cta">
+          <div style="max-width:640px;">
+            <h2 style="font-size:clamp(30px,3.6vw,50px);line-height:1.05;letter-spacing:-0.03em;font-weight:800;margin:0 0 14px;color:#fff;">Ready to improve the lighting in your home or business?</h2>
+            <p style="color:rgba(255,255,255,0.78);font-size:17px;line-height:1.6;margin:0;">Tell us what you&#039;re working on and we&#039;ll help you choose the right next step, from a simple downlight upgrade to a complete lighting plan.</p>
+          </div>
+          <a href="#quote" class="btn-primary" style="font-size:16px;">
+            Get a lighting quote
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="wrap footer-grid">
-      <div>
-        <div class="brand" style="color:#fff;">LED Solutions <span style="background:rgba(255,255,255,0.1); color:#d7d1c7;">Canberra</span></div>
-        <small style="display:block; color:#a79f94; margin-top:4px;">Lighting · Electrical · Controls · Strata</small>
-        <small style="display:block; color:#78716c; margin-top:4px;">ACT Electrical Contractor Licence #2009974 · ABN 51 163 611 452</small>
+  <!-- OFFICIAL CANONICAL FOOTER -->
+  <footer style="background:#17130D;color:#fff;padding:60px 0 30px;">
+    <div class="wrap">
+      <div style="display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:38px;" class="footer-grid">
+        <div>
+          <a href="https://ledsolutions.com.au/" aria-label="LED Solutions home" class="brand">
+            <span class="brand-title" style="color:#fff;">LED <span style="color:#C79255;">Solutions</span></span>
+            <span class="brand-sub" style="color:rgba(255,255,255,0.55);">Design · Supply · Install</span>
+          </a>
+          <p style="margin:18px 0 0;max-width:340px;color:rgba(255,255,255,0.66);font-size:14px;line-height:1.6;">Canberra LED lighting planning, supply and installation for homes, renovations, builders, architects, strata and commercial properties.</p>
+        </div>
+        <div>
+          <h4 style="margin:0 0 14px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#C79255;">Services</h4>
+          <a href="https://ledsolutions.com.au/service-led-downlights/" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">LED downlights</a>
+          <a href="https://ledsolutions.com.au/service-residential-lighting/" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">Residential lighting</a>
+          <a href="https://ledsolutions.com.au/service-commercial-and-strata/" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">Commercial lighting</a>
+          <a href="https://ledsolutions.com.au/service-commercial-and-strata/" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">Strata maintenance</a>
+        </div>
+        <div>
+          <h4 style="margin:0 0 14px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#C79255;">Company</h4>
+          <a href="https://ledsolutions.com.au/our-work/" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">Our Work</a>
+          <a href="https://ledsolutions.com.au/about/" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">About Kieran</a>
+          <a href="https://ledsolutions.com.au/advice/" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">Lighting advice</a>
+          <a href="https://ledsolutions.com.au/contact/" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">Contact</a>
+        </div>
+        <div>
+          <h4 style="margin:0 0 14px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#C79255;">Contact</h4>
+          <a href="tel:1300763122" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">1300 763 122</a>
+          <a href="mailto:kieran@ledsolutions.com.au" style="display:block;color:rgba(255,255,255,0.68);font-size:14px;margin-bottom:9px;">kieran@ledsolutions.com.au</a>
+          <p style="margin:0;color:rgba(255,255,255,0.68);font-size:14px;">Canberra ACT</p>
+          <p style="margin:9px 0 0;color:rgba(255,255,255,0.5);font-size:12px;">Licence 2009974 · ABN 51 163 611 452</p>
+        </div>
       </div>
-      <small style="color:#ded9cf; font-size:0.9rem;">
-        1300 763 122 · Kieran direct: 0415 343 050 · <a href="mailto:kieran@ledsolutions.com.au" style="color:#f0c5ae;">kieran@ledsolutions.com.au</a>
-      </small>
+      <div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:rgba(255,255,255,0.48);font-size:12px;">
+        <span>&copy; 2026 LED Solutions Canberra.</span><span>All rights reserved.</span>
+      </div>
     </div>
   </footer>
 
-  <!-- Simple, High-Converting Vanilla JavaScript -->
+  <!-- SCRIPT FOR SIMULATOR AND FORM DISPATCH -->
   <script>
-    // State
-    const state = {
-      propertyType: 'strata',
+    const simState = {
+      type: 'strata',
       lights: 74,
       dailyHours: 24,
       occupancy: true,
       dimming: true,
-      tariff: 0.32 // Evoenergy ACT Commercial Tariff $0.32/kWh
+      tariff: 0.32
     };
 
-    // Elements
-    const lightsSlider = document.getElementById('sim-lights');
-    const lightsVal = document.getElementById('sim-lights-val');
-    const chkOccupancy = document.getElementById('chk-occupancy');
-    const chkDimming = document.getElementById('chk-dimming');
-    const typeButtons = document.querySelectorAll('.type-preset-btn');
+    const slider = document.getElementById('sim-lights');
+    const label = document.getElementById('sim-lights-val');
+    const chkOcc = document.getElementById('chk-occupancy');
+    const chkDim = document.getElementById('chk-dimming');
+    const presets = document.querySelectorAll('.preset-btn');
+    const prefill = document.getElementById('prefill-btn');
 
-    // Outputs
-    const outSavings = document.getElementById('sim-annual-savings');
+    const outSaved = document.getElementById('sim-annual-savings');
     const outCut = document.getElementById('sim-cut-percent');
-    const outPayback = document.getElementById('sim-payback');
-    const outHoursOff = document.getElementById('sim-hours-off');
+    const outPay = document.getElementById('sim-payback');
+    const outOff = document.getElementById('sim-hours-off');
     const outCo2 = document.getElementById('sim-co2');
-    const prefillBtn = document.getElementById('prefill-btn');
 
-    function calculate() {
-      // Annual burn calculation
-      const annualBaseHours = state.dailyHours * 365;
-      
-      // Legacy fixtures (e.g. Twin T8 batten 72W or Halide)
-      let oldWattsPerFixture = 72;
-      let newLedWatts = 28;
-      let installCostPerFixture = 185;
+    function updateSim() {
+      const annualHours = simState.dailyHours * 365;
+      let oldWatts = 72;
+      let ledWatts = 28;
+      let costPerFixture = 185;
 
-      if (state.propertyType === 'warehouse') {
-        oldWattsPerFixture = 455; // 400W halide + ballast
-        newLedWatts = 140;
-        installCostPerFixture = 285;
-      } else if (state.propertyType === 'office') {
-        oldWattsPerFixture = 76;
-        newLedWatts = 24;
-        installCostPerFixture = 165;
+      if (simState.type === 'warehouse') {
+        oldWatts = 455;
+        ledWatts = 140;
+        costPerFixture = 285;
+      } else if (simState.type === 'office') {
+        oldWatts = 76;
+        ledWatts = 24;
+        costPerFixture = 165;
       }
 
-      // Old baseline cost
-      const oldKWh = (state.lights * oldWattsPerFixture * annualBaseHours) / 1000;
-      const oldCost = oldKWh * state.tariff;
+      const oldKWh = (simState.lights * oldWatts * annualHours) / 1000;
+      const oldCost = oldKWh * simState.tariff;
 
-      // Smart LED + Controls
-      let effectiveHours = annualBaseHours;
-      let effectiveWatts = newLedWatts;
+      let effWatts = ledWatts;
+      let hoursOffPct = 0;
+      if (simState.occupancy) hoursOffPct += 43;
+      if (simState.dimming) effWatts *= 0.65;
 
-      let hoursOffPercent = 0;
-      if (state.occupancy) {
-        // 43% turned completely off when vacant (like Kangara Waters)
-        hoursOffPercent += 43;
-      }
+      const activeFactor = (100 - hoursOffPct) / 100;
+      const newKWh = (simState.lights * effWatts * (annualHours * activeFactor)) / 1000;
+      const newCost = newKWh * simState.tariff;
 
-      if (state.dimming) {
-        // Remaining hours dimmed to 30% background output
-        effectiveWatts *= 0.65;
-      }
+      const saved = Math.round(oldCost - newCost);
+      const cut = Math.round(((oldCost - newCost) / oldCost) * 100);
+      const payback = Math.max(1, ((simState.lights * costPerFixture / saved) * 12)).toFixed(1);
+      const co2 = (((oldKWh - newKWh) * 0.71) / 1000).toFixed(1);
 
-      const activeFactor = (100 - hoursOffPercent) / 100;
-      const newKWh = (state.lights * effectiveWatts * (annualBaseHours * activeFactor)) / 1000;
-      const newCost = newKWh * state.tariff;
+      outSaved.textContent = `$${saved.toLocaleString()} AUD`;
+      outCut.textContent = `-${cut}%`;
+      outPay.textContent = `${payback} Mo`;
+      outOff.textContent = `${hoursOffPct}%`;
+      outCo2.textContent = `${co2} T`;
 
-      const annualSaved = Math.round(oldCost - newCost);
-      const cutPercent = Math.round(((oldCost - newCost) / oldCost) * 100);
-      const totalInstall = state.lights * installCostPerFixture;
-      const paybackMonths = Math.max(1, ((totalInstall / annualSaved) * 12)).toFixed(1);
-      const co2Tonnes = (((oldKWh - newKWh) * 0.71) / 1000).toFixed(1);
-
-      // Render
-      outSavings.textContent = `$${annualSaved.toLocaleString()} AUD`;
-      outCut.textContent = `-${cutPercent}%`;
-      outPayback.textContent = `${paybackMonths} Mo`;
-      outHoursOff.textContent = `${hoursOffPercent}%`;
-      outCo2.textContent = `${co2Tonnes} T`;
-
-      // Update prefill button text
-      prefillBtn.textContent = `Pre-fill Estimate for ${state.lights} Fittings (${state.propertyType.toUpperCase()}) →`;
+      prefill.textContent = `Pre-fill Estimate for ${simState.lights} Fittings (${simState.type.toUpperCase()}) →`;
     }
 
-    // Preset button clicks
-    typeButtons.forEach(btn => {
+    presets.forEach(btn => {
       btn.addEventListener('click', () => {
-        typeButtons.forEach(b => {
-          b.classList.remove('active');
-          b.style.background = 'transparent';
-          b.style.borderColor = 'var(--line)';
-        });
+        presets.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        btn.style.background = 'var(--accent)';
-        btn.style.color = '#fff';
-        btn.style.borderColor = 'var(--accent)';
-
-        state.propertyType = btn.getAttribute('data-type');
-        if (state.propertyType === 'strata') {
-          state.dailyHours = 24;
-          state.lights = 74;
-        } else if (state.propertyType === 'warehouse') {
-          state.dailyHours = 14;
-          state.lights = 48;
-        } else if (state.propertyType === 'office') {
-          state.dailyHours = 10;
-          state.lights = 60;
-        }
-        lightsSlider.value = state.lights;
-        lightsVal.textContent = `${state.lights} fittings`;
-        calculate();
+        simState.type = btn.getAttribute('data-type');
+        if (simState.type === 'strata') { simState.dailyHours = 24; simState.lights = 74; }
+        else if (simState.type === 'warehouse') { simState.dailyHours = 14; simState.lights = 48; }
+        else if (simState.type === 'office') { simState.dailyHours = 10; simState.lights = 60; }
+        slider.value = simState.lights;
+        label.textContent = `${simState.lights} fittings`;
+        updateSim();
       });
     });
 
-    // Slider
-    lightsSlider.addEventListener('input', (e) => {
-      state.lights = parseInt(e.target.value, 10);
-      lightsVal.textContent = `${state.lights} fittings`;
-      calculate();
+    slider.addEventListener('input', (e) => {
+      simState.lights = parseInt(e.target.value, 10);
+      label.textContent = `${simState.lights} fittings`;
+      updateSim();
     });
 
-    // Checkboxes
-    chkOccupancy.addEventListener('change', (e) => {
-      state.occupancy = e.target.checked;
-      calculate();
-    });
-    chkDimming.addEventListener('change', (e) => {
-      state.dimming = e.target.checked;
-      calculate();
-    });
+    chkOcc.addEventListener('change', (e) => { simState.occupancy = e.target.checked; updateSim(); });
+    chkDim.addEventListener('change', (e) => { simState.dimming = e.target.checked; updateSim(); });
 
-    // Pre-fill click
-    prefillBtn.addEventListener('click', (e) => {
-      const notes = document.getElementById('f-notes');
-      notes.value = `Site estimate request: ${state.lights} fittings (${state.propertyType} property). Exploring occupancy controls (${state.occupancy ? 'Yes' : 'No'}) and background dimming (${state.dimming ? 'Yes' : 'No'}). Estimated annual savings: ${outSavings.textContent}.`;
-      notes.focus();
+    prefill.addEventListener('click', () => {
+      const msg = document.getElementById('message');
+      const select = document.getElementById('project-type');
+      if (simState.type === 'strata') select.value = 'Strata repair or maintenance';
+      else if (simState.type === 'warehouse') select.value = 'Warehouse / Logistics';
+      else select.value = 'Commercial lighting';
+
+      msg.value = `Site estimate: ${simState.lights} fittings (${simState.type} property). Exploring smart occupancy controls (${simState.occupancy ? 'Yes' : 'No'}) and background dimming (${simState.dimming ? 'Yes' : 'No'}). Estimated annual saving: ${outSaved.textContent}.`;
+      msg.focus();
     });
 
-    // File selection
-    function handleFileSelect(event) {
-      const files = event.target.files;
-      if (files.length > 0) {
-        document.getElementById('dropzone-text').textContent = `✓ ${files.length} file(s) attached: ${files[0].name}`;
-      }
-    }
-
-    // Form submit
-    function handleFormSubmit(e) {
+    function handleQuoteSubmit(e) {
       e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const type = document.getElementById('project-type').value;
 
-      const name = document.getElementById('f-name').value;
-      const phone = document.getElementById('f-phone').value;
-      const suburb = document.getElementById('f-suburb').value;
-
-      // Dispatch real GA4 event
       if (typeof window.gtag === 'function') {
         window.gtag('event', 'generate_lead', {
-          event_category: 'Lighting_Estimate',
-          event_label: `${suburb} - ${name} - ${state.lights} lights`,
-          value: state.lights * 185
+          event_category: 'Lighting_Quote',
+          event_label: `${type} - ${name}`,
+          value: simState.lights * 185
         });
       }
 
-      const randomRef = `ACT-LED-${Math.floor(100000 + Math.random() * 900000)}`;
-      document.getElementById('ref-code').textContent = randomRef;
-      document.getElementById('form-success').style.display = 'block';
-
-      // Scroll smoothly to success alert
-      document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      document.getElementById('quote-ref').textContent = `ACT-LED-${Math.floor(100000 + Math.random() * 900000)}`;
+      document.getElementById('quote-success').style.display = 'block';
+      document.getElementById('quote-success').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // Initial run
-    calculate();
+    updateSim();
   </script>
 </body>
 </html>
