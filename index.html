@@ -11,6 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 
+  <!-- Preload Comparison Images -->
+  <link rel="preload" as="image" href="assets/real-after-led.jpg">
+  <link rel="preload" as="image" href="assets/real-before-halide.jpg">
+
   <!-- Client Content Configuration -->
   <script src="content-config.js"></script>
 
@@ -427,35 +431,52 @@
       position: relative;
       width: 100%;
       max-width: 1040px;
-      height: 520px;
+      aspect-ratio: 16 / 9;
       margin: 0 auto 36px;
       border-radius: var(--radius-md);
       overflow: hidden;
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-light);
       user-select: none;
+      background: #1A1612; /* Solid dark base so it never renders white */
+      touch-action: pan-y;
     }
 
-    .ba-image-layer {
+    .ba-img-layer {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-position: center;
     }
 
-    .ba-layer-after {
-      background-image: url('assets/after-led-5000k.png');
+    .ba-img-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .ba-layer-before {
-      background-image: url('assets/before-metal-halide.png');
+    .ba-crop-before {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 50%;
+      height: 100%;
       overflow: hidden;
       border-right: 3px solid #FFFFFF;
-      box-shadow: 4px 0 18px rgba(0, 0, 0, 0.4);
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.45);
+      z-index: 5;
+    }
+
+    .ba-crop-before img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      display: block;
     }
 
     .ba-badge {
@@ -1309,10 +1330,12 @@
 
         <!-- Draggable Image Slider -->
         <div class="ba-container" id="baSliderContainer">
-          <div class="ba-image-layer ba-layer-after">
+          <div class="ba-img-layer">
+            <img src="assets/real-after-led.jpg" alt="After Commercial LED 5000K Lighting" id="imgAfter" loading="eager" decoding="async">
             <span class="ba-badge badge-after">AFTER: LED SOLUTIONS 5000K (320 LUX)</span>
           </div>
-          <div class="ba-image-layer ba-layer-before" id="baBeforeLayer">
+          <div class="ba-crop-before" id="baBeforeLayer">
+            <img src="assets/real-before-halide.jpg" alt="Before 400W Metal Halide Lighting" id="imgBefore" loading="eager" decoding="async">
             <span class="ba-badge badge-before">BEFORE: 400W METAL HALIDE (140 LUX)</span>
           </div>
           <div class="ba-slider-handle" id="baHandle">
@@ -1725,8 +1748,18 @@
     // 1. Draggable Before-and-After Slider
     const container = document.getElementById('baSliderContainer');
     const beforeLayer = document.getElementById('baBeforeLayer');
+    const imgBefore = document.getElementById('imgBefore');
     const handle = document.getElementById('baHandle');
     let isDragging = false;
+
+    function syncImgWidth() {
+      if (container && imgBefore) {
+        imgBefore.style.width = container.offsetWidth + 'px';
+      }
+    }
+    window.addEventListener('resize', syncImgWidth);
+    window.addEventListener('load', syncImgWidth);
+    setTimeout(syncImgWidth, 100);
 
     function setSliderPosition(x) {
       const rect = container.getBoundingClientRect();
@@ -1756,7 +1789,7 @@
     container.addEventListener('touchstart', (e) => {
       isDragging = true;
       setSliderPosition(e.touches[0].clientX);
-    });
+    }, { passive: true });
 
     window.addEventListener('touchend', () => {
       isDragging = false;
@@ -1765,7 +1798,7 @@
     window.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
       setSliderPosition(e.touches[0].clientX);
-    });
+    }, { passive: true });
 
     // 2. Interactive Calculator Logic
     let calcDailyHours = 24;
