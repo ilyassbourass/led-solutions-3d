@@ -432,14 +432,23 @@
       width: 100%;
       max-width: 1040px;
       aspect-ratio: 16 / 9;
-      margin: 0 auto 36px;
+      margin: 0 auto 20px;
       border-radius: var(--radius-md);
       overflow: hidden;
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-light);
       user-select: none;
+      -webkit-user-select: none;
       background: #1A1612; /* Solid dark base so it never renders white */
-      touch-action: pan-y;
+      touch-action: none;
+      cursor: ew-resize;
+    }
+
+    .ba-container * {
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .ba-img-layer {
@@ -536,18 +545,35 @@
       font-weight: 800;
     }
 
-    .ba-range-slider {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: ew-resize;
-      z-index: 30;
-      margin: 0;
-      -webkit-appearance: none;
-      touch-action: pan-y;
+    .ba-quick-toggles {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .ba-toggle-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      color: var(--text-main);
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ba-toggle-btn:hover, .ba-toggle-btn.active {
+      background: var(--brand-terracotta);
+      color: #FFFFFF !important;
+      border-color: var(--brand-terracotta);
+      box-shadow: 0 4px 14px rgba(156, 95, 34, 0.3);
     }
 
     .ba-metrics-comparison {
@@ -1355,7 +1381,13 @@
           <div class="ba-slider-handle" id="baHandle">
             <div class="handle-circle">↔</div>
           </div>
-          <input type="range" min="1" max="99" value="50" class="ba-range-slider" id="baRangeInput" aria-label="Compare Before and After Commercial Lighting">
+        </div>
+
+        <!-- 1-Click Quick Comparison Switchers -->
+        <div class="ba-quick-toggles">
+          <button type="button" class="ba-toggle-btn" onclick="setSliderPercent(98, this)">◀ Show 100% Legacy Halide</button>
+          <button type="button" class="ba-toggle-btn active" onclick="setSliderPercent(50, this)">↔ 50/50 Split View</button>
+          <button type="button" class="ba-toggle-btn" onclick="setSliderPercent(2, this)">Show 100% Modern LED ▶</button>
         </div>
 
         <!-- Comparison Metric Cards -->
@@ -1760,12 +1792,12 @@
 
   <!-- Interactive JavaScript Engine -->
   <script>
-    // 1. Draggable Before-and-After Slider
+    // 1. Draggable Before-and-After Slider (PointerEvents Engine)
     const container = document.getElementById('baSliderContainer');
     const beforeLayer = document.getElementById('baBeforeLayer');
     const imgBefore = document.getElementById('imgBefore');
     const handle = document.getElementById('baHandle');
-    const rangeInput = document.getElementById('baRangeInput');
+    let isPointerDown = false;
 
     function syncImgWidth() {
       if (container && imgBefore) {
@@ -1776,13 +1808,43 @@
     window.addEventListener('load', syncImgWidth);
     setTimeout(syncImgWidth, 100);
 
-    if (rangeInput) {
-      rangeInput.addEventListener('input', (e) => {
-        const val = e.target.value + '%';
-        beforeLayer.style.width = val;
-        handle.style.left = val;
-      });
+    function setSliderPercent(pct, btn) {
+      if (pct < 1) pct = 1;
+      if (pct > 99) pct = 99;
+      beforeLayer.style.width = pct + '%';
+      handle.style.left = pct + '%';
+      if (btn) {
+        document.querySelectorAll('.ba-toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
     }
+
+    function updateSliderPos(clientX) {
+      const rect = container.getBoundingClientRect();
+      let pct = ((clientX - rect.left) / rect.width) * 100;
+      setSliderPercent(pct);
+    }
+
+    container.addEventListener('pointerdown', (e) => {
+      isPointerDown = true;
+      try { container.setPointerCapture(e.pointerId); } catch(err) {}
+      updateSliderPos(e.clientX);
+    });
+
+    container.addEventListener('pointermove', (e) => {
+      if (!isPointerDown) return;
+      updateSliderPos(e.clientX);
+    });
+
+    container.addEventListener('pointerup', (e) => {
+      isPointerDown = false;
+      try { container.releasePointerCapture(e.pointerId); } catch(err) {}
+    });
+
+    container.addEventListener('pointercancel', (e) => {
+      isPointerDown = false;
+      try { container.releasePointerCapture(e.pointerId); } catch(err) {}
+    });
 
     // 2. Interactive Calculator Logic
     let calcDailyHours = 24;
